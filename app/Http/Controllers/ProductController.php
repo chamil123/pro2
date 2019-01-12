@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\category;
 use App\product;
+use DB;
 
 class ProductController extends Controller {
 
@@ -15,7 +16,12 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $products = product::all();
+//        $products = product::all();
+        $products=DB::table('products')
+                ->join('categories','products.cat_id','=','categories.id')
+                ->select('products.*','categories.cat_name')
+                ->get();
+        
        return view('Admin.viewproduct', compact('products'));
        
     }

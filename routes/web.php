@@ -30,3 +30,5 @@ Route::resource('partner','MemberController');
 Route::resource('product','ProductController');
 Route::post('product/{id}','ProductController@update');
 
+
+

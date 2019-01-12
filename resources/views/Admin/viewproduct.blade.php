@@ -37,7 +37,7 @@
                                 <td>{{$product->product_description}}</td>
                                 <td>{{$product->product_price}}</td>
                                 <td>{{$product->product_pv_value}}</td>
-                                <td>{{$product->cat_id}}</td>
+                                <td>{{$product->cat_name}}</td>
                                 <td style="width: 230px">
                                     <button id="viewbtn" onclick="abc({{$product->id}});"type="button" class="  btn btn-default btn-sm " >
                                         <i class="glyphicon glyphicon-edit"></i> view</button>
@@ -64,7 +64,7 @@
 <!-- Button trigger modal -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-    <div class="modal-dialog" role="document" style="width: 57%">
+    <div class="modal-dialog" role="document" style="width: 62%">
         <div class="modal-content" style="border-radius: 4px;" >
             <!--            <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Modal titlessss</h5>
@@ -74,26 +74,41 @@
                         </div>-->
             <div class="modal-body" style="padding-top: 10px">
                 <div class="row" style="margin-top: 20px">
-                    <div class="col-md-5" >
-                        <img id="myimg" class="img-thumbnail" src="" width="290px">
+                    <div class="col-md-5" style="margin-top: 25px">
+                        <img id="myimg" class="img-thumbnail" src="" width="315px">
                     </div>
                     <div class="col-md-7">
 
 
                         <form action="/action_page.php">
                             <div class="form-group">
-                                <label style="font-size: 19px;font-weight: bold" id="product_title"></label> 
+                                <label for="email">Product Name:</label>
+                                <input type="text" class="form-control"id="product_title">
                             </div>
                             <div class="form-group">
-                                <label id="product_PV" style="font-size: 15px;color: #22dd77"></label>
+                                <label for="email">PV value:</label>
+                                <input type="text" class="form-control" id="product_PV">
                             </div>
                             <div class="form-group">
-                                <label id="product_price" style="font-size: 20px;"></label>
+                                <label for="email">Product Price:</label>
+                                <input type="text" class="form-control" id="product_price">
                             </div>
                             <div class="form-group">
-                                <label id="product_dis" style="font-weight: normal" for="pwd"></label>
+                                <label for="email">Product Price:</label>
+                                <textarea class="form-control" id="product_dis" rows="4"></textarea>
                             </div>
+                            <!--                            <div class="form-group">
+                                                            <label id="product_PV" style="font-size: 15px;color: #22dd77"></label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label id="product_price" style="font-size: 20px;"></label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label id="product_dis" style="font-weight: normal" for="pwd"></label>
+                                                        </div>-->
                         </form>
+
+
                     </div>
                 </div> 
                 <!--{{asset('storage/images/'.$product->product_image)}}-->
@@ -119,38 +134,16 @@
     $.ajax({
     url: "{{url('product')}}" + "/" + id, //this is your uri
             type: 'get', //this is your method
-
-            //dataType: 'JSON',
             success: function (data) {
             var img = data.product_image;
             $('#exampleModal').modal("show");
-            $('#product_title').html(data.product_name);
-            $('#product_dis').html(data.product_description);
-            $('#product_price').html("Rs " + data.product_price + ".00");
-            $('#product_PV').html("PV value : " + data.product_price );
-            $("#myimg").attr('src', "{{asset('storage/images/')}}/" + img); 
+            $('#product_title').val(data.product_name);
+            $('#product_dis').val(data.product_description);
+            $('#product_price').val("Rs " + data.product_price + ".00");
+            $('#product_PV').val("PV value : " + data.product_pv_value);
+            $("#myimg").attr('src', "{{asset('storage/images/')}}/" + img);
             }
     });
-//            $.get("{{URL::to('/product')}}",function (data){
-//               alert(data);
-//            });
-//            
-//            
-//            $('#exampleModal').modal('show');
-    //alert("sdsdsds"); 
-
-//            $.ajax({
-//                url: "fetch.php",
-//                method: "POST",
-//                //data:{id:id}
-//                dataType: 'json',
-//                success: function (data, textStatus, jqXHR) {
-//
-//                }
-//            });
-//        });
-//
-//    });
     }
 </script>
 @endsection

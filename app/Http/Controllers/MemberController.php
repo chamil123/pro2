@@ -76,7 +76,8 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        //
+        $members=member::find($id);
+        return view('Admin.memberProfile', compact('members'));
     }
 
     /**
@@ -111,5 +112,8 @@ class MemberController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function profile(){
+       
     }
 }
