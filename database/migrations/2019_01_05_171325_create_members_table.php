@@ -25,7 +25,7 @@ class CreateMembersTable extends Migration {
             $table->string('image');
             $table->string('member_bank_name')->default('');
             $table->string('member_bank_branch')->default('');
-            $table->string('member_account_no')->default('');
+            $table->string('member_account_no',255)->default('');
             $table->string('member_benifit_name')->default('');
             $table->string('member_benifit_address', 255)->default('');
             $table->string('member_benifit_nic')->default('');

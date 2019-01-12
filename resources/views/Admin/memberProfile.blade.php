@@ -14,19 +14,24 @@
     </ol>
 </section>
 <section class="content">
-    <div class="row">
-        <!-- left column -->
-        <div class="col-md-6">
-            <!-- general form elements -->
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Personal details</h3>
-                </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-                <form role="form" method="post" action="/member">
-                    {{csrf_field()}}
+    <form role="form" method="post" action="/member/{{$members->id}}" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <div class="row">
+
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Personal details</h3>
+                    </div>
+
                     <div class="box-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Member image</label>
+                            <input type="file"  id="image" value="" name="image" >
+                            <img src="{{asset('storage/images/'.$members->image)}}" width="130px">
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Member name</label>
                             <input type="text" class="form-control" id="member_name" value="{{$members->member_name}}" name="member_name" placeholder="Enter Name">
@@ -37,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Member Address</label>
-                            <textarea id="member_address" class="form-control" rows="3" >{{$members->member_address}}</textarea>
+                            <textarea id="member_address" class="form-control" rows="3" name="member_address">{{$members->member_address}}</textarea>
                             <!--<input type="text" class="form-control" id="member_address" name="member_address" placeholder="Enter Address">-->
                         </div>
                         <div class="form-group">
@@ -46,13 +51,22 @@
                             </div>
                             <div>
                                 <label class="radio-inline">
-                                    <input type="radio"   name="member_gender" id="member_gender" value="male">male
+                                    <input type="radio"   name="member_gender" id="member_gender" value="male" {{$members->member_gender=='male'?'checked':''}} >male
+                                    
+                                    
+                                    
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="member_gender" id="member_gender" value="female">female
+                                    <input type="radio" name="member_gender" id="member_gender" value="female" {{$members->member_gender=='female'?'checked':''}}>female
                                 </label>
                                 <span id="genderInfo"  class="col-sm-12" style="padding-left: 30px;color: #ff0033" ></span>                 
                             </div>
+                            
+                            
+
+
+
+
                         </div> 
 
                         <div class="form-group">
@@ -67,74 +81,75 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Contact Number 1</label>
-                            <input type="text" class="form-control" id="member_contact_1" name="member_contact_1" placeholder="Enter Address">
+                            <input type="text" class="form-control" id="member_contact_1"  value="{{$members->member_contact_1}}" name="member_contact_1" placeholder="Enter Address">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Contact Number 2</label>
-                            <input type="text" class="form-control" id="member_contact_2" name="member_contact_2" placeholder="Enter Address">
+                            <input type="text" class="form-control" id="member_contact_2"  value="{{$members->member_contact_2}}" name="member_contact_2" placeholder="Enter Address">
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <!-- Horizontal Form -->
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Bank Details </h3>
-                </div>
 
-                <form role="form" method="post" action="/member">
-                    {{csrf_field()}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Horizontal Form -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Bank Details </h3>
+                    </div>
+
+
                     <div class="box-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Bank name</label>
-                            <input type="text" class="form-control" id="member_name" value="{{$members->member_name}}" name="member_name" placeholder="Enter Name">
+                            <input type="text" class="form-control" id="member_bank_name" value="{{$members->member_bank_name}}" name="member_bank_name" placeholder="Enter Name">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Branch</label>
-                            <input type="text" class="form-control" id="member_nic" value="{{$members->member_nic}}"  name="member_nic" placeholder="Enter NIC number">
+                            <input type="text" class="form-control" id="member_bank_branch" value="{{$members->member_bank_branch}}"  name="member_bank_branch" placeholder="Enter NIC number">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Account number</label>
-                            <input type="text" class="form-control" id="member_nic" value="{{$members->member_nic}}"  name="member_nic" placeholder="Enter NIC number">
+                            <input type="text" class="form-control" id="member_account_no" value="{{$members->member_account_no}}"  name="member_account_no" placeholder="Enter NIC number">
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-              <div class="col-md-6">
-            <!-- Horizontal Form -->
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Beneficiary Details </h3>
-                </div>
 
-                <form role="form" method="post" action="/member">
-                    {{csrf_field()}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Horizontal Form -->
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Beneficiary Details </h3>
+                    </div>
+
+
+
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Bank name</label>
-                            <input type="text" class="form-control" id="member_name" value="{{$members->member_name}}" name="member_name" placeholder="Enter Name">
+                            <label for="exampleInputEmail1">Beneficiary Name</label>
+                            <input type="text" class="form-control" id="member_benifit_name" value="{{$members->member_benifit_name}}" name="member_benifit_name" placeholder="Enter Name">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Branch</label>
-                            <input type="text" class="form-control" id="member_nic" value="{{$members->member_nic}}"  name="member_nic" placeholder="Enter NIC number">
+                            <label for="exampleInputEmail1">Beneficiary Address</label>
+                            <textarea id="member_benifit_address" class="form-control" rows="3" name="member_benifit_address">{{$members->member_benifit_address}}</textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Account number</label>
-                            <input type="text" class="form-control" id="member_nic" value="{{$members->member_nic}}"  name="member_nic" placeholder="Enter NIC number">
-                        </div>
+                        <!--                        <div class="form-group">
+                                                    <label for="exampleInputEmail1">Account number</label>
+                                                    <input type="text" class="form-control" id="member_account_no" value="{{$members->member_account_no}}"  name="member_account_no" placeholder="Enter NIC number">
+                                                </div>-->
                     </div>
-                </form>
+
+                </div>
             </div>
+
+            <!--/.col (right) -->
         </div>
-        <!--/.col (right) -->
-    </div>
-    <button type="submit" class="btn btn-warning">Save changes</button>
+        <button type="submit" class="btn btn-warning">Save changes</button>
         <button type="reset" name="reset" class="btn btn-danger">
             <i class="glyphicon glyphicon-trash"></i>
             Clear</button>
+    </form>
     <!-- /.row -->
 </section>
 

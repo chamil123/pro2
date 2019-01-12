@@ -108,7 +108,7 @@
 
                         <div class="col-sm-8">
                             
-                            <img src="{{asset('storage/uploads/'.$member->image)}}" alt="awaweaaw" width="110px">
+                            <img src="{{asset('storage/images/'.$member->image)}}" alt="awaweaaw" width="110px">
                         </div>
                     </div>
                     <div class="form-group">

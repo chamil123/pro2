@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="{{ asset('bower_components/jvectormap/jquery-jvectormap.css')}}">
         <!-- Date Picker -->
         <!-- bootstrap datepicker -->
-        <!--<link rel="stylesheet" href="{{ asset('bower_components/admin-lte/plugins/datepicker/datepicker3.css')}}">-->
+        <link rel="stylesheet" href="{{ asset('bower_components/admin-lte/plugins/datepicker/datepicker3.css')}}">
         <!--<script src="{{ asset('bower_components/admin-lte/plugins/datepicker/bootstrap-datepicker.js')}}"></script>-->
 
         <!-- <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}"> -->
@@ -287,13 +287,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="{{ asset('bower_components/admin-lte/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+                                    <img src="{{asset('storage/images/avatar.jpg')}}" class="user-image" alt="User Image">
                                     <span class="hidden-xs">Administrator</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="{{ asset('bower_components/admin-lte/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                                        <img src="{{asset('storage/images/avatar.jpg')}}" class="img-circle" alt="User Image">
 
                                         <p>
                                             Administrator - Web Developer
@@ -301,7 +301,7 @@
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
-                                    <li class="user-body">
+<!--                                    <li class="user-body">
                                         <div class="row">
                                             <div class="col-xs-4 text-center">
                                                 <a href="#">Followers</a>
@@ -313,12 +313,12 @@
                                                 <a href="#">Friends</a>
                                             </div>
                                         </div>
-                                        <!-- /.row -->
-                                    </li>
+                                         /.row 
+                                    </li>-->
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            <a href="/member/1" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
                                             <a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -341,7 +341,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="{{ asset('bower_components/admin-lte/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                            <img src="{{asset('storage/images/avatar.jpg')}}" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p>Alexander Pierce</p>
