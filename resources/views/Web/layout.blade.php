@@ -170,7 +170,7 @@
                             <div class="header-mini-cart">
                                 <div class="mini-cart-btn">
                                     <i class="ion-bag"></i>
-                                    <span class="cart-notification">2</span>
+                                    <span class="cart-notification"> {{Session::has('cart')?Session::get('cart')->totalQty:''}}</span>
                                 </div>
                                 <ul class="cart-list">
                                     <li>
@@ -217,6 +217,15 @@
                                 
                                 
                             </div>
+
+                            <div class="settings-top">
+                                <div  style="font-size:1.7em;margin-top:7px;margin-left:3px">
+                                <a href="shopping-cart"><i class="far fa-user"></i></a>
+                                
+                                </div>
+                                
+                                
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 d-block d-lg-none">
@@ -246,38 +255,7 @@
     </header>
     <!-- header area end -->
 
-    <!-- slider area start -->
-    <div class="hero-area">
-        <div class="hero-slider-active slider-arrow-style slick-dot-style hero-dot">
-            <div class="hero-single-slide hero-2 hero-2__style-4 d-flex align-items-center" style="background-image: url('bower_components/web/assets/img/slider/slide-7.jpg');">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="slider-content text-center">
-                                <h3>melani bags 2018</h3>
-                                <h1>big winter sale<br>50% off</h1>
-                                <a href="shop-grid-left-sidebar.html" class="slider-btn slider-btn__2">shop now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-single-slide hero-2 hero-2__style-4 d-flex align-items-center" style="background-image: url('bower_components/web/assets/img/slider/slide-8.jpg');">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="slider-content text-center ml-auto">
-                                <h3>december 15-30, 2018</h3>
-                                <h1>run way mega sale<br>up to 80% off</h1>
-                                <a href="shop-grid-left-sidebar.html" class="slider-btn slider-btn__2">shop now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- slider area end -->
+
 
    
             @section('body')

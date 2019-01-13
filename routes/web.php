@@ -31,5 +31,16 @@ Route::resource('product','ProductController');
 Route::post('product/{id}','ProductController@update');
 Route::post('member/{id}','MemberController@update');
 
+Route::get('/add-t--cart/{id}',[
+    'uses'=>'ProductController@getAddToCart',
+    'as'=>'product.addToCart'
+]);
+
+Route::get('/shopping-cart',[
+    'uses'=>'ProductController@getCart',
+    'as'=>'product.shoppingCart'
+]);
+
+Route::get('/product-details/{id}','ProductController@productDetails');
 
 
