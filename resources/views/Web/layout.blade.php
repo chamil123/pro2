@@ -170,7 +170,8 @@
                             <div class="header-mini-cart">
                                 <div class="mini-cart-btn">
                                     <i class="ion-bag"></i>
-                                    <span class="cart-notification"> {{Session::has('cart')?Session::get('cart')->totalQty:''}}</span>
+                                  
+                                    <span class="cart-notification"> </span>
                                 </div>
                                 <ul class="cart-list">
                                     <li>

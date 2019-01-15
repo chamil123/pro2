@@ -3,23 +3,23 @@
 @section('body')
 
 <!-- breadcrumb area start -->
-<div class="breadcrumb-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="breadcrumb-wrap">
-                    <nav aria-label="breadcrumb">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item"><a href="shop-grid-left-sidebar.html">shop</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">cart</li>
-                        </ul>
-                    </nav>
+<!--    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb-wrap">
+                        <nav aria-label="breadcrumb">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="shop-grid-left-sidebar.html">shop</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">cart</li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </div>-->
 <!-- breadcrumb area end -->
 
 <!-- page main wrapper start -->
@@ -43,31 +43,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(Session::has('cart'))
-                                    @foreach($products as $product)
+
+                                @foreach($carts as $cart)
                                 <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/img/product/product-1.jpg"
-                                                                               alt="Product"/></a></td>
-                                    <td class="pro-title"><a href="#">{{$product['item']['title']}}</a>asas</td>
-                                    <td class="pro-price"><span>{{$product['price']}}</span></td>
-                                    <td class="pro-quantity">
-                                        <div class="pro-qty"><input type="text" value="1"></div>
+                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="{{asset('storage/images/'.$cart->options->img)}}"alt="Product"/></a></td>
+                                    <td class="pro-title"><a href="#"></a>{{$cart->name}}</td>
+                                    <td class="pro-price"><span>Rs {{$cart->price}}</span></td>
+                                    <td class="pro-quantity" >
+                                        <!--<div class="row">-->
+                                            <div class="pro-qty"><input type="text" value="{{$cart->qty}}"></div>
+
+<!--                                        </div>
+                                        <div class="row">
+                                            <button type="button" style="width: 90px" class="btn btn-success btn-sm ">Update</button>
+
+                                        </div>
+                                         <div class="row">
+                                            <button type="button" style="width: 90px" class="btn btn-danger btn-sm">Remove</button>
+
+                                        </div>-->
+
                                     </td>
-                                    <td class="pro-subtotal"><span>$295.00</span></td>
+                                    <td class="pro-subtotal"><span>Rs {{$cart->price*$cart->qty}}</span></td>
                                     <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
                                 </tr> 
-                                 @endforeach
-                                @else
-
-                                @endif
-
-
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                     <!-- Cart Update Option -->
                     <div class="cart-update-option d-block d-md-flex justify-content-between">
-<!--                        <div class="apply-coupon-wrapper">
+                        <div class="apply-coupon-wrapper">
                             <form action="#" method="post" class=" d-block d-md-flex">
                                 <input type="text" placeholder="Enter Your Coupon Code" required />
                                 <button class="sqr-btn">Apply Coupon</button>
@@ -75,7 +81,7 @@
                         </div>
                         <div class="cart-update mt-sm-16">
                             <a href="#" class="sqr-btn">Update Cart</a>
-                        </div>-->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,12 +95,15 @@
                                 <table class="table">
                                     <tr>
                                         <td>Sub Total</td>
-                                        <td>$230</td>
+                                        <td>Rs {{Cart::subtotal()}}</td>
                                     </tr>
-                                    
+                                    <tr>
+                                        <td>Tax</td>
+                                        <td>Rs0</td>
+                                    </tr>
                                     <tr class="total">
                                         <td>Total</td>
-                                        <td class="total-amount">{{$totalPrice}}</td>
+                                        <td class="total-amount">Rs {{Cart::subtotal()}}</td>
                                     </tr>
                                 </table>
                             </div>

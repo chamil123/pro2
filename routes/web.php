@@ -31,16 +31,36 @@ Route::resource('product','ProductController');
 Route::post('product/{id}','ProductController@update');
 Route::post('member/{id}','MemberController@update');
 
-Route::get('/add-t--cart/{id}',[
-    'uses'=>'ProductController@getAddToCart',
-    'as'=>'product.addToCart'
-]);
-
-Route::get('/shopping-cart',[
-    'uses'=>'ProductController@getCart',
-    'as'=>'product.shoppingCart'
-]);
+//Route::get('/add-t--cart/{id}',[
+//    'uses'=>'ProductController@getAddToCart',
+//    'as'=>'product.addToCart'
+//]);
+//
+//Route::get('/shopping-cart',[
+//    'uses'=>'ProductController@getCart',
+//    'as'=>'product.shoppingCart'
+//]);
 
 Route::get('/product-details/{id}','ProductController@productDetails');
+
+Route::get('test', function (){
+ Cart::add('293ad', 'Product 1', 1, 9.99, ['size' => 'large']);   
+});
+Route::get('cart', function (){
+    return Cart::content();
+});
+Route::get('total', function (){
+    return Cart::total();
+});
+Route::get('subtotal', function (){
+    return Cart::subtotal();
+});
+Route::get('subtotal', function (){
+    return Cart::subtotal();
+});
+Route::get('cart','cartController@index');
+Route::get('cart/add/{id}','cartController@addItem');
+Route::get('cart/remove/{id}','cartController@removeItem');
+
 
 

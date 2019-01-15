@@ -51,7 +51,8 @@
                             <!--<span class="old-price"><del>$120.00</del></span>-->
                         </div>
                         <div class="product-btn">
-                            <a href="{{route('product.addToCart',['id'=>$product->id])}}"><i class="ion-bag"></i>Add to cart</a>
+           
+                            <a href="{{url('cart/add/')}}/{{$product->id}}"><i class="ion-bag"></i>Add to cart</a>
                         </div>
                         <div class="hover-box text-center">
                             <div class="ratings">

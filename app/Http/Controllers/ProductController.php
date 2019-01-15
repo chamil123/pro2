@@ -133,27 +133,27 @@ class ProductController extends Controller {
         //
     }
 
-    public function getAddToCart(Request $request, $id) {
-        $product = product::find($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $product->id);
-
-
-        $request->session()->put('cart', $cart);
-        //dd($request->session()->get('cart'));
-        return redirect('/');
-    }
-
-    public function getCart() {
-        if (!Session::has('cart')) {
-            return view('Web.shopping-cart');
-        }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
-        return view('Web.shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
-    }
-
+//    public function getAddToCart(Request $request, $id) {
+//        $product = product::find($id);
+//        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+//        $cart = new Cart($oldCart);
+//        $cart->add($product, $product->id);
+//
+//
+//        $request->session()->put('cart', $cart);
+//        //dd($request->session()->get('cart'));
+//        return redirect('/');
+//    }
+//
+//    public function getCart() {
+//        if (!Session::has('cart')) {
+//            return view('Web.shopping-cart');
+//        }
+//        $oldCart = Session::get('cart');
+//        $cart = new Cart($oldCart);
+//        return view('Web.shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+//    }
+//
     public function productDetails($id) {
         $product = product::find($id);
         return view('Web.product-details', compact('product'));
