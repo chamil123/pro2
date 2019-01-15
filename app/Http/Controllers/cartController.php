@@ -16,12 +16,13 @@ class cartController extends Controller
     public function addItem($id){
         $pro= product::find($id);
         
-        Cart::add(['id' => $pro->id, 'name' => $pro->product_name, 'qty' => 1, 'price' => $pro->product_price,'options'=>['img'=> $pro->product_image]]);
-       // return view('cart');
+       $cart= Cart::add(['id' => $pro->id, 'name' => $pro->product_name, 'qty' => 1, 'price' => $pro->product_price,'options'=>['img'=> $pro->product_image,'pv'=>$pro->product_pv_value]]);
+        return $cart;
         
     }
     public function removeItem($id){
         Cart::remove($id);
+        return back();
         
     }
 }

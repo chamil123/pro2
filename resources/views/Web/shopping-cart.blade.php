@@ -37,6 +37,7 @@
                                     <th class="pro-thumbnail">Thumbnail</th>
                                     <th class="pro-title">Product</th>
                                     <th class="pro-price">Price</th>
+                                    <th class="pro-price">PV value</th>
                                     <th class="pro-quantity">Quantity</th>
                                     <th class="pro-subtotal">Total</th>
                                     <th class="pro-remove">Remove</th>
@@ -49,30 +50,36 @@
                                     <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="{{asset('storage/images/'.$cart->options->img)}}"alt="Product"/></a></td>
                                     <td class="pro-title"><a href="#"></a>{{$cart->name}}</td>
                                     <td class="pro-price"><span>Rs {{$cart->price}}</span></td>
+                                    <td class="pro-price"><span> {{$cart->options->pv}}</span></td>
                                     <td class="pro-quantity" >
                                         <!--<div class="row">-->
-                                            <div class="pro-qty"><input type="text" value="{{$cart->qty}}"></div>
+                                        <div class="pro-qty"><input type="text" value="{{$cart->qty}}"></div>
 
-<!--                                        </div>
-                                        <div class="row">
-                                            <button type="button" style="width: 90px" class="btn btn-success btn-sm ">Update</button>
-
-                                        </div>
-                                         <div class="row">
-                                            <button type="button" style="width: 90px" class="btn btn-danger btn-sm">Remove</button>
-
-                                        </div>-->
+                                        <!--                                        </div>
+                                                                                <div class="row">
+                                                                                    <button type="button" style="width: 90px" class="btn btn-success btn-sm ">Update</button>
+                                        
+                                                                                </div>
+                                                                                 <div class="row">
+                                                                                    <button type="button" style="width: 90px" class="btn btn-danger btn-sm">Remove</button>
+                                        
+                                                                                </div>-->
 
                                     </td>
                                     <td class="pro-subtotal"><span>Rs {{$cart->price*$cart->qty}}</span></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                    <td class="pro-remove"><a href="{{url('cart/remove/')}}/{{$cart->rowId}}"><i class="fa fa-trash-o"></i></a></td>
                                 </tr> 
                                 @endforeach
+
                             </tbody>
                         </table>
                     </div>
+                    @if(Cart::count()!="0")
+                    @else
+                    <div><h4>Cart is empty</h4></div>
+                    @endif
                     <!-- Cart Update Option -->
-                    <div class="cart-update-option d-block d-md-flex justify-content-between">
+                    <!-- <div class="cart-update-option d-block d-md-flex justify-content-between">
                         <div class="apply-coupon-wrapper">
                             <form action="#" method="post" class=" d-block d-md-flex">
                                 <input type="text" placeholder="Enter Your Coupon Code" required />
@@ -82,7 +89,7 @@
                         <div class="cart-update mt-sm-16">
                             <a href="#" class="sqr-btn">Update Cart</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="row">

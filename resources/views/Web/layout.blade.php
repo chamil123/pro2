@@ -171,38 +171,28 @@
                                 <div class="mini-cart-btn">
                                     <i class="ion-bag"></i>
                                   
-                                    <span class="cart-notification"> </span>
+                                    <span class="cart-notification"> {{Cart::count()}}</span>
                                 </div>
                                 <ul class="cart-list">
+                                           @foreach($carts as $cart)
                                     <li>
                                         <div class="cart-img">
-                                            <a href="product-details.html"><img src="assets/img/cart/cart-1.jpg"
+                                            <a href="product-details.html"><img src="{{asset('storage/images/'.$cart->options->img)}}"
                                                     alt=""></a>
                                         </div>
                                         <div class="cart-info">
-                                            <h4><a href="product-details.html">simple product 09</a></h4>
-                                            <span>$60.00</span>
+                                            <h4><a href="product-details.html">{{$cart->name}}</a></h4>
+                                            <span>Rs {{$cart->price}}</span>
                                         </div>
                                         <div class="del-icon">
-                                            <i class="fa fa-times"></i>
+                                            <a  href="{{url('cart/remove/')}}/{{$cart->rowId}}"><i class="fa fa-times"></i></a>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="cart-img">
-                                            <a href="product-details.html"><img src="assets/img/cart/cart-2.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="cart-info">
-                                            <h4><a href="product-details.html">virtual product 10</a></h4>
-                                            <span>$50.00</span>
-                                        </div>
-                                        <div class="del-icon">
-                                            <i class="fa fa-times"></i>
-                                        </div>
-                                    </li>
+                                          @endforeach
+                                 
                                     <li class="mini-cart-price">
                                         <span class="subtotal">subtotal : </span>
-                                        <span class="subtotal-price ml-auto">$110.00</span>
+                                        <span class="subtotal-price ml-auto">Rs {{Cart::subtotal()}}</span>
                                     </li>
                                     <li class="checkout-btn">
                                         <a href="#">checkout</a>

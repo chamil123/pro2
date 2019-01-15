@@ -31,6 +31,8 @@ Route::resource('product','ProductController');
 Route::post('product/{id}','ProductController@update');
 Route::post('member/{id}','MemberController@update');
 
+
+
 //Route::get('/add-t--cart/{id}',[
 //    'uses'=>'ProductController@getAddToCart',
 //    'as'=>'product.addToCart'
@@ -61,6 +63,7 @@ Route::get('subtotal', function (){
 Route::get('cart','cartController@index');
 Route::get('cart/add/{id}','cartController@addItem');
 Route::get('cart/remove/{id}','cartController@removeItem');
+
 
 
 
