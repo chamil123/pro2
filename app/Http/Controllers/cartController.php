@@ -19,7 +19,8 @@ class cartController extends Controller {
 
         Cart::add(['id' => $pro->id, 'name' => $pro->product_name, 'qty' => 1, 'price' => $pro->product_price, 'options' => ['img' => $pro->product_image, 'pv' => $pro->product_pv_value]]);
 
-        return view('Web.shopping-cart', compact('carts'));
+       
+         return back();
     }
 
     public function removeItem($id) {

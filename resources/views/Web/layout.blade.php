@@ -51,7 +51,7 @@
                             <div class="main-menu">
                                 <nav id="mobile-menu">
                                     <ul>
-                                        <li class="active"><a href="#">Home <i class="fa fa-angle-down"></i></a>
+                                        <li class="active"><a href="/">Home <i class="fa fa-angle-down"></i></a>
                                             <!-- <ul class="dropdown">
                                                 <li><a href="index.html">Home version 01</a></li>
                                                 <li><a href="index-2.html">Home version 02</a></li>
@@ -195,7 +195,7 @@
                                         <span class="subtotal-price ml-auto">Rs {{Cart::subtotal()}}</span>
                                     </li>
                                     <li class="checkout-btn">
-                                        <a href="#">checkout</a>
+                                        <a href="cart">View cart</a>
                                     </li>
                                 </ul>
                             </div>

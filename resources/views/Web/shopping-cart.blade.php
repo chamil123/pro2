@@ -99,7 +99,7 @@
 
                                     </td>
                                     <td class="pro-subtotal"><span>Rs {{$cart->price*$cart->qty}}</span></td>
-                                    <td class="pro-remove"><a href="{{url('cart/remove/')}}/{{$cart->rowId}}"><i class="fa fa-trash-o"></i></a></td>
+                                    <td class="pro-remove"><a href="{{url('cart/remove')}}/{{$cart->rowId}}"><i class="fas fa-trash-alt"></i></a></td>
                                 </tr> 
                                 @endforeach
 
