@@ -1,7 +1,30 @@
 @extends('Web.layout')
 
 @section('body')
-
+<script src="http://localhost:8000/bower_components/jquery/dist/jQuery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#cartMsg").hide();
+                @foreach($carts as $cart)
+        $('#upCart{{$cart->id}}').on('change keyup', function () {
+            var newQty = $('#upCart{{$cart->id}}').val();
+            var rowID = $('#rowID{{$cart->id}}').val();
+//       alert(rowId);
+            $.ajax({
+                url: '{{url('/cart/update')}}',
+                data: 'rowID=' + rowID + '&newQty=' + newQty,
+                type: 'get',
+                success: function (response) {
+                    $("#cartMsg").show();
+                   // console.log(response);
+                    $("#cartMsg").html(response);
+                }
+            });
+            // alert(newQty);
+        });
+        @endforeach
+    });
+</script>
 <!-- breadcrumb area start -->
 <!--    <div class="breadcrumb-area">
         <div class="container">
@@ -31,7 +54,12 @@
                 <div class="col-lg-12">
                     <!-- Cart Table Area -->
                     <div class="cart-table table-responsive">
+                        <!--@if(isset($msg))-->
+                       
+                        <!--@endif-->
+                        <div id="cartMsg" class="alert alert-success" ></div>
                         <table class="table table-bordered">
+                             
                             <thead>
                                 <tr>
                                     <th class="pro-thumbnail">Thumbnail</th>
@@ -48,12 +76,16 @@
                                 @foreach($carts as $cart)
                                 <tr>
                                     <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="{{asset('storage/images/'.$cart->options->img)}}"alt="Product"/></a></td>
+
                                     <td class="pro-title"><a href="#"></a>{{$cart->name}}</td>
                                     <td class="pro-price"><span>Rs {{$cart->price}}</span></td>
-                                    <td class="pro-price"><span> {{$cart->options->pv}}</span></td>
+                                    <td class="pro-price"><span> {{$cart->options->pv*$cart->qty}}</span></td>
                                     <td class="pro-quantity" >
+                                        <input type="hidden" value="{{$cart->rowId}}" id="rowID{{$cart->id}}">
                                         <!--<div class="row">-->
-                                        <div class="pro-qty"><input type="text" value="{{$cart->qty}}"></div>
+                                        <div class="pro-price">
+                                            <input class="form-controll" style="padding-left: 15px;width: 55px"type="number" id="upCart{{$cart->id}}" value="{{$cart->qty}}">
+                                        </div>
 
                                         <!--                                        </div>
                                                                                 <div class="row">
@@ -121,7 +153,10 @@
             </div>
         </div>
     </div>
+
     <!-- cart main wrapper end -->
 </main>
+
+
 
 @endsection

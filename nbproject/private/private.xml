@@ -3,18 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/laravelHome/pro2/resources/views/Admin/updateProduct.blade.php</file>
-            <file>file:/E:/laravelHome/pro2/app/Http/Controllers/cartController.php</file>
-            <file>file:/E:/laravelHome/pro2/resources/views/Web/product_body.blade.php</file>
             <file>file:/E:/laravelHome/pro2/routes/web.php</file>
             <file>file:/E:/laravelHome/pro2/resources/views/Web/product-details.blade.php</file>
             <file>file:/E:/laravelHome/pro2/resources/views/Admin/addProduct.blade.php</file>
             <file>file:/E:/laravelHome/pro2/app/Http/Controllers/ProductController.php</file>
-            <file>file:/E:/laravelHome/pro2/resources/views/Web/shopping-cart.blade.php</file>
             <file>file:/E:/laravelHome/pro2/resources/views/Web/slider.blade.php</file>
+            <file>file:/E:/laravelHome/pro2/resources/views/Web/layout.blade.php</file>
+            <file>file:/E:/laravelHome/pro2/app/product.php</file>
+            <file>file:/E:/laravelHome/pro2/resources/views/Admin/updateProduct.blade.php</file>
+            <file>file:/E:/laravelHome/pro2/app/Http/Controllers/webController.php</file>
+            <file>file:/E:/laravelHome/pro2/app/Http/Controllers/cartController.php</file>
+            <file>file:/E:/laravelHome/pro2/resources/views/Web/product_body.blade.php</file>
+            <file>file:/E:/laravelHome/pro2/resources/views/Web/shopping-cart.blade.php</file>
             <file>file:/E:/laravelHome/pro2/resources/views/Admin/viewproduct.blade.php</file>
             <file>file:/E:/laravelHome/pro2/resources/views/Admin/layout.blade.php</file>
-            <file>file:/E:/laravelHome/pro2/app/product.php</file>
         </group>
     </open-files>
 </project-private>

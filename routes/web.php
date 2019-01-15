@@ -63,6 +63,7 @@ Route::get('subtotal', function (){
 Route::get('cart','cartController@index');
 Route::get('cart/add/{id}','cartController@addItem');
 Route::get('cart/remove/{id}','cartController@removeItem');
+Route::get('cart/update','cartController@update');
 
 
 
