@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/member';
 
     /**
      * Create a new controller instance.
@@ -36,4 +36,8 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function user_nic(){
+        return 'user_nic';
+    }
+    
 }

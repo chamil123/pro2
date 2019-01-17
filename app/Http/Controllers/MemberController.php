@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\member;
 use App\partner;
+use App\Auth;
 
 class MemberController extends Controller {
 
@@ -14,9 +15,11 @@ class MemberController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
+       
         $members = member::all();
         //return view('Admin.registerPartner');
         return view('Admin.viewmembers', compact('members'));
+        
     }
 
     public function viewMembers() {

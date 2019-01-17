@@ -18,9 +18,9 @@
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="{{ asset('bower_components/admin-lte/dist/css/skins/_all-skins.min.css')}}">
         <!-- Morris chart -->
-        
+
         <link rel="stylesheet" href="{{ asset('bower_components/morris.js/morris.css')}}">
-        
+
         <!-- jvectormap -->
         <link rel="stylesheet" href="{{ asset('bower_components/jvectormap/jquery-jvectormap.css')}}">
         <!-- Date Picker -->
@@ -44,7 +44,7 @@
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
- 
+
         <style>
             body {
                 background: #fff;
@@ -288,7 +288,20 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="{{asset('storage/images/avatar.jpg')}}" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">Administrator</span>
+
+
+
+
+                                    <span class="hidden-xs" style="color: #999999">Hi,   
+                                        @if (Auth::guest())
+
+                                        @else
+                                        {{ Auth::user()->name }} 
+
+
+                                        @endif
+
+                                    </span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -296,25 +309,25 @@
                                         <img src="{{asset('storage/images/avatar.jpg')}}" class="img-circle" alt="User Image">
 
                                         <p>
-                                            Administrator - Web Developer
+                                            {{ Auth::user()->name }} 
                                             <small>Member since Nov. 2012</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
-<!--                                    <li class="user-body">
-                                        <div class="row">
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Followers</a>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Sales</a>
-                                            </div>
-                                            <div class="col-xs-4 text-center">
-                                                <a href="#">Friends</a>
-                                            </div>
-                                        </div>
-                                         /.row 
-                                    </li>-->
+                                    <!--                                    <li class="user-body">
+                                                                            <div class="row">
+                                                                                <div class="col-xs-4 text-center">
+                                                                                    <a href="#">Followers</a>
+                                                                                </div>
+                                                                                <div class="col-xs-4 text-center">
+                                                                                    <a href="#">Sales</a>
+                                                                                </div>
+                                                                                <div class="col-xs-4 text-center">
+                                                                                    <a href="#">Friends</a>
+                                                                                </div>
+                                                                            </div>
+                                                                             /.row 
+                                                                        </li>-->
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
@@ -344,7 +357,7 @@
                             <img src="{{asset('storage/images/avatar.jpg')}}" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
-                            <p>Alexander Pierce</p>
+                            <p>{{ Auth::user()->name }}</p>
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
@@ -629,9 +642,9 @@
         <!-- jQuery UI 1.11.4 -->
         <script src="{{ asset('bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-                @yield('script')
+        @yield('script')
         <script>
-            
+
 $.widget.bridge('uibutton', $.ui.button);
 
 
@@ -676,6 +689,6 @@ $('#datepicker').datepicker({
     autoclose: true
 });
         </script>
-      
+
     </body>
 </html>

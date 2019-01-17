@@ -2,41 +2,40 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\partner;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
-{
+class RegisterController extends Controller {
     /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
+      |--------------------------------------------------------------------------
+      | Register Controller
+      |--------------------------------------------------------------------------
+      |
+      | This controller handles the registration of new users as well as their
+      | validation and creation. By default this controller uses a trait to
+      | provide this functionality without requiring any additional code.
+      |
+     */
 
-    use RegistersUsers;
+use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/register';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
+    public function __construct() {
+        //$this->middleware('guest');
     }
 
     /**
@@ -45,12 +44,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+                    'user_nic' => 'required|string|max:255|unique:users',
+                    'name' => 'required|string|max:255',
+                    'user_contact_1' => 'required|string|max:255',
+//                    'user_address' => 'required|string|max:500',
+//                    'lastname' => 'required|string|max:255',
+//                    'email' => 'required|string|email|max:255',
+                    'password' => 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -60,12 +62,35 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+    protected function create(array $data) {
+        $user = User::create([
+                    'user_nic' => $data['user_nic'],
+                    'name' => $data['name'],
+                    'user_contact_1' => $data['user_contact_1'],
+                    'user_address' => '',
+                    'user_gender' => '',
+                    'user_dob' => '',
+                    'user_contact_2' => '',
+                    'user_bank_name' => '',
+                    'user_bank_branch' => '',
+                    'user_account_no' => '',
+                    'user_benifit_name' => '',
+                    'user_benifit_address' => '',
+                    'user_status' => '1',
+                    'user_pv' => '',
+//                    'lastname' => $data['lastname'],
+                    'email' => "",
+                    'image' => "default_image.png",
+                    'password' => bcrypt($data['password']),
         ]);
+        $last_id = $user->id;
+        $partner = new partner;
+        $partner->nic_dummey = $data['nic_dummey'];
+        $partner->side = $data['side'];
+        $partner->member_id = 1;
+        $partner->partner_id = $last_id;
+        $partner->save();
+        return $user;
     }
+
 }
