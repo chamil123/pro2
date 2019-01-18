@@ -41,6 +41,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cart/add/{id}', 'cartController@addItem');
     Route::get('cart/remove/{id}', 'cartController@removeItem');
     Route::get('cart/update', 'cartController@update');
+    
+    Route::get('orders', 'cartController@viewOrders');
+    Route::get('checkout','cartController@checkout');
+     Route::get('orders/{id}', 'cartController@viewOrdersById');
 });
 
 //Route::get('/add-t--cart/{id}',[
@@ -53,6 +57,8 @@ Route::group(['middleware' => 'auth'], function () {
 //    'as'=>'product.shoppingCart'
 //]);
 
+
+
 Route::get('/product-details/{id}', 'ProductController@productDetails');
 
 
@@ -61,11 +67,15 @@ Route::get('/product-details/{id}', 'ProductController@productDetails');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', function (){
-    return App\User::with('orders')->get();
-});
+// Route::get('checkout', 'cartController@checkout');
 
 
 Auth::routes();
+
+Route::get('test',function(){
+    return App\user::with('orders')->get();
+});
+
+
 
 

@@ -9,7 +9,7 @@
         <small>Add member</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#"><i class="fas fa-tachometer-alt"></i> Home</a></li>
         <li class="active">Dashboard</li>
     </ol>
 </section>
@@ -35,10 +35,10 @@
                         <tbody>
                             @foreach($members as $member)
                             <tr>
-                                <td> {{$member->member_name}}</td>
-                                <td>{{$member->member_nic}}</td>
-                                <td>{{$member->member_contact_1}}</td>
-                                <td>{{$member->member_address}}</td>
+                                <td> {{$member->name}}</td>
+                                <td>{{$member->user_nic}}</td>
+                                <td>{{$member->user_contact_1}}</td>
+                                <td>{{$member->userr_address}}</td>
                                 <td>{{$member->created_at}}</td>
                             </tr>
                             @endforeach

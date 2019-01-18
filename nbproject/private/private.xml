@@ -2,22 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/E:/laravelHome/pro2/resources/views/auth/login.blade.php</file>
-            <file>file:/E:/laravelHome/pro2/routes/web.php</file>
-            <file>file:/E:/laravelHome/pro2/app/User.php</file>
-            <file>file:/E:/laravelHome/pro2/resources/views/Admin/memberProfile.blade.php</file>
-            <file>file:/E:/laravelHome/pro2/database/migrations/2019_01_16_061631_create_users_table.php</file>
-            <file>file:/E:/laravelHome/pro2/database/migrations/2019_01_15_194851_create_orders_table.php</file>
-            <file>file:/E:/laravelHome/pro2/resources/views/Admin/registerPartner.blade.php</file>
-            <file>file:/E:/laravelHome/pro2/resources/views/Web/layout.blade.php</file>
-            <file>file:/E:/laravelHome/pro2/database/migrations/2019_01_05_171325_create_members_table.php</file>
-            <file>file:/E:/laravelHome/pro2/app/order.php</file>
-            <file>file:/E:/laravelHome/pro2/app/Http/Controllers/Auth/LoginController.php</file>
-            <file>file:/E:/laravelHome/pro2/app/Http/Controllers/MemberController.php</file>
-            <file>file:/E:/laravelHome/pro2/resources/views/Admin/layout.blade.php</file>
-            <file>file:/E:/laravelHome/pro2/app/Http/Controllers/Auth/RegisterController.php</file>
-            <file>file:/E:/laravelHome/pro2/resources/views/auth/register.blade.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

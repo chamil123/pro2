@@ -26,10 +26,10 @@
     });
 </script>
 <!-- breadcrumb area start -->
-<!--    <div class="breadcrumb-area">
-        <div class="container">
+   <div class="breadcrumb-area">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
+                <div class="col-md-12">
                     <div class="breadcrumb-wrap">
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
 <!-- breadcrumb area end -->
 
 <!-- page main wrapper start -->
@@ -86,17 +86,6 @@
                                         <div class="pro-price">
                                             <input class="form-controll" style="padding-left: 15px;width: 55px"type="number" id="upCart{{$cart->id}}" value="{{$cart->qty}}">
                                         </div>
-
-                                        <!--                                        </div>
-                                                                                <div class="row">
-                                                                                    <button type="button" style="width: 90px" class="btn btn-success btn-sm ">Update</button>
-                                        
-                                                                                </div>
-                                                                                 <div class="row">
-                                                                                    <button type="button" style="width: 90px" class="btn btn-danger btn-sm">Remove</button>
-                                        
-                                                                                </div>-->
-
                                     </td>
                                     <td class="pro-subtotal"><span>Rs {{$cart->price*$cart->qty}}</span></td>
                                     <td class="pro-remove"><a href="{{url('cart/remove')}}/{{$cart->rowId}}"><i class="fas fa-trash-alt"></i></a></td>
@@ -147,7 +136,7 @@
                                 </table>
                             </div>
                         </div>
-                        <a href="checkout.html" class="sqr-btn d-block">Proceed To Checkout</a>
+                        <a href="checkout" class="sqr-btn d-block">Proceed To Checkout</a>
                     </div>
                 </div>
             </div>

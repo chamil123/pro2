@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\member;
 use App\partner;
 use App\Auth;
+use App\User;
 
 class MemberController extends Controller {
 
@@ -16,7 +17,7 @@ class MemberController extends Controller {
      */
     public function index() {
        
-        $members = member::all();
+        $members = User::all();
         //return view('Admin.registerPartner');
         return view('Admin.viewmembers', compact('members'));
         

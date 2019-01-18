@@ -394,7 +394,7 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="/partner/create"><i style="font-size:0.8em" class="far fa-circle"></i> Member Registration</a></li>
+                                <li><a href="/register"><i style="font-size:0.8em" class="far fa-circle"></i> Member Registration</a></li>
                                 <li><a href="/member"><i style="font-size:0.8em" class="far fa-circle"></i> View Members</a></li>
 
                             </ul>
@@ -410,7 +410,18 @@
                             <ul class="treeview-menu">
                                 <li><a href="/product/create"><i style="font-size:0.8em" class="far fa-circle"></i> Add Product</a></li>
                                 <li><a href="/product"><i style="font-size:0.8em" class="far fa-circle"></i> View Products</a></li>
-
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                              <i class="fas fa-cart-plus"></i>
+                                <span>Order management</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/orders"><i style="font-size:0.8em" class="far fa-circle"></i> View Orders</a></li>
                             </ul>
                         </li>
 

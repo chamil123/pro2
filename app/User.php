@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-//use App\order;
+
 class User extends Authenticatable
 {
     //$2y$10$eZw4YXyAhHXwlBQogueODurSJEsPzUhdhbFuZGsb1urwztRDMegXq
@@ -27,7 +27,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
     public function orders(){
-        return $this->hasMany(order::class);
+        return $this->hasMany(orders::class);
     }
 }
+ 
