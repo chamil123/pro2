@@ -622,6 +622,7 @@
 <script src="{{ asset('bower_components/web/assets/js/ajax-mail.js')}}"></script>
 <!-- Active Js -->
 <script src="{{ asset('bower_components/web/assets/js/main.js')}}"></script>
+ @yield('script')
 </body>
 
 

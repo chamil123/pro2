@@ -4146,8 +4146,8 @@ only screen and (max-width: 767px) {
 }
 
 .nice-select {
-    width: 200px;
-    padding: 0 10px;
+    width: 100%;
+    //padding: 0 10px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {

@@ -67,7 +67,10 @@ Route::get('/product-details/{id}', 'ProductController@productDetails');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::get('checkout', 'cartController@checkout');
+ Route::get('ordercols', 'cartController@orderCols');
+ 
+ Route::post('/dummey_pv','cartController@storeDummeyPv');
+  Route::get('viewdummey_pv','cartController@viewDummeyPv');
 
 
 Auth::routes();

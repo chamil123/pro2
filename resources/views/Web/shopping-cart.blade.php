@@ -2,47 +2,55 @@
 
 @section('body')
 <script src="http://localhost:8000/bower_components/jquery/dist/jQuery-2.1.4.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <script>
     $(document).ready(function () {
         $("#cartMsg").hide();
                 @foreach($carts as $cart)
-        $('#upCart{{$cart->id}}').on('change keyup', function () {
+                $('#upCart{{$cart->id}}').on('change keyup', function () {
             var newQty = $('#upCart{{$cart->id}}').val();
             var rowID = $('#rowID{{$cart->id}}').val();
 //       alert(rowId);
             $.ajax({
-                url: '{{url('/cart/update')}}',
-                data: 'rowID=' + rowID + '&newQty=' + newQty,
-                type: 'get',
-                success: function (response) {
+            url: '{{url(' / cart / update')}}',
+                    data: 'rowID=' + rowID + '&newQty=' + newQty,
+                    type: 'get',
+                    success: function (response) {
                     $("#cartMsg").show();
-                   // console.log(response);
+                    // console.log(response);
                     $("#cartMsg").html(response);
-                }
-            });
-            // alert(newQty);
+                    }
         });
-        @endforeach
+        // alert(newQty);
     });
-</script>
+            @endforeach
+    });</script>
+
+<style>
+
+    .dropdown-menu {
+        width: 300px !important;
+        height: 400px !important;
+    }
+</style>
 <!-- breadcrumb area start -->
-   <div class="breadcrumb-area">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="breadcrumb-wrap">
-                        <nav aria-label="breadcrumb">
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="shop-grid-left-sidebar.html">shop</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">cart</li>
-                            </ul>
-                        </nav>
-                    </div>
+<div class="breadcrumb-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrap">
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="shop-grid-left-sidebar.html">shop</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">cart</li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
+</div>
 <!-- breadcrumb area end -->
 
 <!-- page main wrapper start -->
@@ -55,11 +63,11 @@
                     <!-- Cart Table Area -->
                     <div class="cart-table table-responsive">
                         <!--@if(isset($msg))-->
-                       
+
                         <!--@endif-->
                         <div id="cartMsg" class="alert alert-success" ></div>
                         <table class="table table-bordered">
-                             
+
                             <thead>
                                 <tr>
                                     <th class="pro-thumbnail">Thumbnail</th>
@@ -79,7 +87,7 @@
 
                                     <td class="pro-title"><a href="#"></a>{{$cart->name}}</td>
                                     <td class="pro-price"><span>Rs {{$cart->price}}</span></td>
-                                    <td class="pro-price"><span> {{$cart->options->pv*$cart->qty}}</span></td>
+                                    <td class="pro-price"><span> {{$cart->options->pv*$cart->qty}}</span> <button  class="btn btn-dark btn-sm"  data-toggle="modal" data-target="#exampleModal">advance</button></td>
                                     <td class="pro-quantity" >
                                         <input type="hidden" value="{{$cart->rowId}}" id="rowID{{$cart->id}}">
                                         <!--<div class="row">-->
@@ -146,6 +154,132 @@
     <!-- cart main wrapper end -->
 </main>
 
+<!-- Button trigger modal -->
+
+<div class="modal fade"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog" style="width: 100%" role="document" >
+        <div class="modal-content" style="border-radius: 4px;" >
+
+            <div class="modal-body" style="padding-top: 10px">
+                <div class="row" style="margin-top: 20px">
+
+                    <div class="col-md-12">
+
+                        <div class="box box-primary">
+                            <div class="box-body">
+                                <form class="form-inline" id="addform">
+                                    {{csrf_field()}}
+
+                                    <div class="form-group " >
+                                        <label for="staticEmail2" style="width: 300px" class="sr-only">Email</label>
+                                        <select class="form-control-sm form-control" style="width: 300px" id="dummey_id" name="dummey_id">
+                                            <option  >Select dummry </option>
+                                            <option value="1" >876073829_A</option>
+                                            <option value="2" >876073829_B</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group mx-sm-3 ">
+                                        <label for="inputPassword2" class="sr-only">Password</label>
+                                        <input type="text" class="form-control " id="pv_value" name="pv_value" placeholder="pv value">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary "  ><i class="fas fa-plus-circle"></i> Add </button>
+                                </form>
+                                <div id="controlid">
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+@section('script')
+<script >
+//    $('#read-data').on('click',function (){
+//       alert("sdsdsds"); 
+//    });
+
+    $(document).ready(function () {
+        $('#addform').on('submit', function (e) {
+//    function abc() {
+//        $('#addform').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/dummey_pv", //this is your uri
+                type: 'POST', //this is your method
+                data: $('#addform').serialize(),
+                success: function (data) {
+                    console.log(data)
+                    alert("sdsd");
+//          
+                }
+            });
+            loadData();
+        });   
+    });
+    function loadData(){
+        alert("asa");
+                    $.ajax({
+                url: "{{url('viewdummey_pv')}}", //this is your uri
+                type: 'get', //this is your method
+                success: function (data) {
+
+                    var table = '<div class="row">'
+                    table = '<div class="col-md-12">'
+                    table = ' <div class="box">'
+
+                    table = '<div class="box-body">';
+                    table = '<table class="table  table-dark " style="width:100%">';
+                    table += '<thead style="width:100%">'
+
+                    table += '<tr>'
+                    table += '<td>Dummey Id</td>'
+                    table += '<td>Pv value</td>'
+                    table += '<td>Action</td>'
+                    table += '</tr>'
+                    table += '</thead>'
+                    table += '<tbody>'
+                    for (var i in data) {
+
+                        dummey_id = data[i].dummey_id;
+                        pv_value = data[i].pv_value;
+                        table += '<tr>'
+                        table += '<td>'
+                        table += dummey_id;
+                        table += '</td>'
+                        table += '<td>'
+                        table += pv_value;
+                        table += '</td>'
+
+                        table += '<td>'
+                        table += '<button onclick="loadData();" type="button" class="btn btn-danger btn-sm "> <i class="fas fa-trash-alt"></i> Delete</button>';
+                        table += '</td>'
+
+                        table += '</tr>'
+                    }
+                    table += '</tbody>'
+                    table += '</div>';
+                    table += '</div>';
+                    table += '</div>';
+                    table += '</div>';
+
+                    $('#controlid').html(table);
+                }
 
 
+
+            });
+    }
+
+</script>
 @endsection
