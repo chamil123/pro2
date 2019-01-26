@@ -15,36 +15,16 @@ use Illuminate\Support\Arr;
 class cartController extends Controller {
 
     public function index() {
-
+        $dummeys = DB::table('dummeys')
+                ->select('dummeys.dummey_name', 'dummeys.id')
+                ->where('user_id', Auth::user()->id)
+                ->get();
         $carts = Cart::content();
-        return view('Web.shopping-cart', compact('carts'));
+        return view('Web.shopping-cart', compact('carts', 'dummeys'));
     }
 
-    public function checkout() {
-//         $products = product::all();
-////       
-////       return $products->id;
-//        $i = 1;
-//        $date = array();
-//
-//        foreach (product::all() as $p) {
-//            $child[$i]['aaa'] = $p->product_name;
-//            $child[$i]['bb'] = $p->id;
-//            foreach (orders::all() as $o) {
-//                $date['id'] = "asdasd";
-//                $subchild[] = $date;
-//                $date = null;
-//            }
-//
-//            $child[$i]['cc'] = $subchild;
-//            $subchild = null;
-//            $i++;
-//        }
-//          $asss=$child[1]["cc"];
-//         
-//         foreach ($asss as $bb){
-//             print_r($bb['id']);
-//         }
+    public function checkout(Request $request) {
+
         $orders = new orders();
         $order = orders::createOrder();
 
@@ -66,16 +46,35 @@ class cartController extends Controller {
             );
             $orders_product_id = DB::table('orders_product')->orderBy('id', 'DESC')->take(1)->select('orders_product.id')->get();
 
-            //$i++;
-            $dummey_pv = new dummey_pv();
-            $dummey_pv->orders_product_id = $orders_product_id[0]->id;
-            $dummey_pv->pv = "50";
-            $dummey_pv->save();
-//         $posts = Post::orderBy('id', 'DESC')->get();
-//         return DB::table('orders_product')->orderBy('id','DESC')->take(1)->get();
+            $order_productss = DB::table('temp_dummey_pvs')
+                    ->select('temp_dummey_pvs.dummey_id', 'temp_dummey_pvs.product_id', 'temp_dummey_pvs.pv_value')
+                    ->where('product_id', $data->id)
+                    ->get();
+            $val = 0;
+            foreach ($order_productss as $order_product) {
+                $dummey_pv = new dummey_pv();
+                $dummey_pv->orders_product_id = $orders_product_id[0]->id;
+                $dummey_pv->dummey_id = $order_product->dummey_id;
+                $dummey_pv->pv = $order_product->pv_value;
+                $dummey_pv->save();
+                $val++;
+            }
+            if ($val > 0) {
+                
+            } else {
+                $dummey_pv = new dummey_pv();
+                $dummey_pv->orders_product_id = $orders_product_id[0]->id;
+                $dummey_pv->dummey_id = $request->dummey_id;
+                $dummey_pv->pv = $data->options->pv;
+                $dummey_pv->save();
+            }
+            
+
+            $val = 0;
         }
-        // Cart::destroy();
-        //return back();
+        temp_dummey_pv::query()->truncate();
+        Cart::destroy();
+        return back();
     }
 
     public function orderCols() {
@@ -111,7 +110,7 @@ class cartController extends Controller {
         $order_products = DB::table('orders_product')
                 ->join('products', 'orders_product.product_id', '=', 'products.id')
                 ->join('orders', 'orders_product.orders_id', '=', 'orders.id')
-                ->select('orders_product.*', 'products.product_name', 'orders.created_at', 'orders.total')
+                ->select('orders_product.*', 'products.product_name', 'orders.created_at')
                 ->where('orders_id', $id)
                 ->get();
 
@@ -164,14 +163,26 @@ class cartController extends Controller {
     public function storeDummeyPv(Request $request) {
         $temp_dummey_pv = new temp_dummey_pv();
         $temp_dummey_pv->dummey_id = $request->dummey_id;
+        $temp_dummey_pv->product_id = $request->product_id;
         $temp_dummey_pv->pv_value = $request->pv_value;
 
+        print_r($temp_dummey_pv);
         $temp_dummey_pv->save();
     }
 
-    public function viewDummeyPv() {
-        $temp_dummey_pv = temp_dummey_pv::all();
+    public function viewDummeyPv($id) {
+        $temp_dummey_pv = DB::table('temp_dummey_pvs')
+                ->select('temp_dummey_pvs.dummey_id', 'temp_dummey_pvs.product_id', 'temp_dummey_pvs.pv_value')
+                ->where('product_id', $id)
+                ->get();
+//        $temp_dummey_pv = temp_dummey_pv::all($id);
         return $temp_dummey_pv;
+    }
+
+    public function delete_pv($id) {
+        $temp_dummey_pv = temp_dummey_pv::find($id);
+        $temp_dummey_pv->delete();
+        return "ss";
     }
 
 }

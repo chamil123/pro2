@@ -15,7 +15,7 @@
     <form  method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
         <div class="row">
-              <div class="col-md-6">
+            <div class="col-md-6">
                 <!-- Horizontal Form -->
                 <div class="box box-info">
                     <div class="box-header with-border">
@@ -29,7 +29,7 @@
                             <label for="inputEmail3" class="col-sm-4 control-label">Member Image</label>
 
                             <div class="col-sm-8">
-
+                                <input type="hidden" class="form-control" id="user_id" name="user_id"  value="{{ Auth::user()->id }}" >
                                 <img src="{{asset('storage/images/'.Auth::user()->image)}}" alt="awaweaaw" width="110px">
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                             <label for="inputPassword3" class="col-sm-4 control-label">Address </label>
                             <div class="col-sm-8">
                                 <textarea type="text" class="form-control" rows="5" placeholder="Enter user address"></textarea>
-                                
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -79,9 +79,14 @@
                     <div class="box-body">
                         <div class="form-group{{ $errors->has('nic_dummey') ? ' has-error' : '' }}">
                             <label for="exampleInputEmail1">Tracking Center</label>
-                            <select class="form-control" id="sel1" name="nic_dummey" value="{{ old('nic_dummey') }}" required autofocus>
-                                <option> {{ Auth::user()->user_nic }}_A</option>
-                                <option> {{ Auth::user()->user_nic }}_B</option>
+                            <select class="form-control" id="sel1" name="nic_dummey"  required autofocus>
+                                <!--                                <option> {{ Auth::user()->user_nic }}_A</option>
+                                                                <option> {{ Auth::user()->user_nic }}_B</option>-->
+
+                                @foreach($dummeys as $dummey)
+                                <option value="{{$dummey->id}}">{{$dummey->dummey_name}}</option>
+                                @endforeach
+                               
                             </select>
                             @if ($errors->has('nic_dummey'))
                             <span class="help-block">

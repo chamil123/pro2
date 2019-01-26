@@ -414,7 +414,7 @@
                         </li>
                         <li class="treeview">
                             <a href="#">
-                              <i class="fas fa-cart-plus"></i>
+                                <i class="fas fa-cart-plus"></i>
                                 <span>Order management</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
@@ -653,7 +653,7 @@
         <!-- jQuery UI 1.11.4 -->
         <script src="{{ asset('bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-        @yield('script')
+
         <script>
 
 $.widget.bridge('uibutton', $.ui.button);
@@ -691,7 +691,7 @@ $.widget.bridge('uibutton', $.ui.button);
         <script src="{{ asset('bower_components/admin-lte/dist/js/pages/dashboard.js')}}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{ asset('bower_components/admin-lte/dist/js/demo.js')}}"></script>
-
+  @yield('script')
 
         <script>
 

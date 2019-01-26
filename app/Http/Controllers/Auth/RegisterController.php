@@ -7,6 +7,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\dummey;
 
 class RegisterController extends Controller {
     /*
@@ -84,11 +85,30 @@ use RegistersUsers;
                     'password' => bcrypt($data['password']),
         ]);
         $last_id = $user->id;
+
+
+        for ($i = 0; $i < 3; $i++) {
+            $dummey = new dummey();
+            if ($i == 0) {
+                $dummey->dummey_name = $data['user_nic'] . "_PL1_A";
+            } else if ($i == 1) {
+                $dummey->dummey_name = $data['user_nic'] . "_PL1_B";
+            } else {
+                $dummey->dummey_name = $data['user_nic'] . "_PL1_C";
+            }
+            $dummey->placement_id = 1;
+            $dummey->user_id = $last_id;
+            $dummey->save();
+        }
+
+
+
         $partner = new partner;
         $partner->nic_dummey = $data['nic_dummey'];
         $partner->side = $data['side'];
-        $partner->member_id = 1;
+        $partner->member_id = $data['user_id'];
         $partner->partner_id = $last_id;
+        $partner->status = 1;
         $partner->save();
         return $user;
     }

@@ -41,10 +41,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cart/add/{id}', 'cartController@addItem');
     Route::get('cart/remove/{id}', 'cartController@removeItem');
     Route::get('cart/update', 'cartController@update');
-    
+
     Route::get('orders', 'cartController@viewOrders');
-    Route::get('checkout','cartController@checkout');
-     Route::get('orders/{id}', 'cartController@viewOrdersById');
+    Route::post('checkout', 'cartController@checkout');
+    Route::get('orders/{id}', 'cartController@viewOrdersById');
+
+    Route::get('register', 'RegisterController@register');
 });
 
 //Route::get('/add-t--cart/{id}',[
@@ -67,15 +69,19 @@ Route::get('/product-details/{id}', 'ProductController@productDetails');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
- Route::get('ordercols', 'cartController@orderCols');
- 
- Route::post('/dummey_pv','cartController@storeDummeyPv');
-  Route::get('viewdummey_pv','cartController@viewDummeyPv');
+Route::get('ordercols', 'cartController@orderCols');
+
+Route::post('/dummey_pv', 'cartController@storeDummeyPv');
+Route::get('viewdummey_pv/{id}', 'cartController@viewDummeyPv');
+
+Route::get('dummey_pv_delete/{id}', 'cartController@delete_pv');
+
+
 
 
 Auth::routes();
 
-Route::get('test',function(){
+Route::get('test', function() {
     return App\user::with('orders')->get();
 });
 

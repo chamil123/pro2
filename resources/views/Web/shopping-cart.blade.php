@@ -57,7 +57,9 @@
 <main>
     <!-- cart main wrapper start -->
     <div class="cart-main-wrapper pt-100 pb-100 pt-sm-58 pb-sm-58">
+
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Cart Table Area -->
@@ -87,7 +89,7 @@
 
                                     <td class="pro-title"><a href="#"></a>{{$cart->name}}</td>
                                     <td class="pro-price"><span>Rs {{$cart->price}}</span></td>
-                                    <td class="pro-price"><span> {{$cart->options->pv*$cart->qty}}</span> <button  class="btn btn-dark btn-sm"  data-toggle="modal" data-target="#exampleModal">advance</button></td>
+                                    <td class="pro-price"><span> {{$cart->options->pv*$cart->qty}}</span> <button  class="btn btn-dark btn-sm"  data-toggle="modal" onclick="addPv({{$cart->options->pv*$cart->qty}},{{$cart->id}});" data-target="#exampleModal">advance</button></td>
                                     <td class="pro-quantity" >
                                         <input type="hidden" value="{{$cart->rowId}}" id="rowID{{$cart->id}}">
                                         <!--<div class="row">-->
@@ -103,28 +105,40 @@
                             </tbody>
                         </table>
                     </div>
-                    @if(Cart::count()!="0")
-                    @else
-                    <div><h4>Cart is empty</h4></div>
-                    @endif
-                    <!-- Cart Update Option -->
-                    <!-- <div class="cart-update-option d-block d-md-flex justify-content-between">
-                        <div class="apply-coupon-wrapper">
-                            <form action="#" method="post" class=" d-block d-md-flex">
-                                <input type="text" placeholder="Enter Your Coupon Code" required />
-                                <button class="sqr-btn">Apply Coupon</button>
-                            </form>
-                        </div>
-                        <div class="cart-update mt-sm-16">
-                            <a href="#" class="sqr-btn">Update Cart</a>
-                        </div>
-                    </div> -->
+                    <form role="form" method="post" action="/checkout" >
+                        {{csrf_field()}}
+                        <!-- Cart Update Option -->
+                        <div class="cart-update-option d-block d-md-flex justify-content-between">
+                            <div class="apply-coupon-wrapper">
+                                <!--<form action="#" method="post" class="  ">-->
+                                    <!--<input type="text" placeholder="Enter Your Coupon Code" required />-->
+                                <label for="staticEmail2" style="width: 100px" class="sr-only">Email</label>
+                                <select class="form-control form-control-sm " style="width: 100px" id="dummey_id" name="dummey_id">
+                                    <!--<option  >Select dummry </option>-->
+                                    @foreach($dummeys as $dummey)
+                                    <option value="{{$dummey->id}}">{{$dummey->dummey_name}}</option>
+                                    @endforeach
+
+                                </select>
+                                <!--<button class="sqr-btn">Apply Coupon</button>-->
+                                <!--</form>-->
+                            </div>
+                            <div class="cart-update mt-sm-16">
+
+                                <!--<a href="#" class="sqr-btn">Update Cart</a>-->
+                            </div>
+                        </div> 
+                        @if(Cart::count()!="0")
+                        @else
+                        <div style="margin-top:10px"><h4>Cart is empty</h4></div>
+                        @endif
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-5 ml-auto">
                     <!-- Cart Calculation Area -->
                     <div class="cart-calculator-wrapper">
+
                         <div class="cart-calculate-items">
                             <h3>Cart Totals</h3>
                             <div class="table-responsive">
@@ -144,11 +158,15 @@
                                 </table>
                             </div>
                         </div>
-                        <a href="checkout" class="sqr-btn d-block">Proceed To Checkout</a>
+                        <button type="sybmit" class="sqr-btn d-block btn-block">Proceed To Checkout</button>
+                        <!--<a href="" class="sqr-btn d-block">Proceed To Checkout</a>-->
+                        </form>
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
 
     <!-- cart main wrapper end -->
@@ -166,28 +184,44 @@
                     <div class="col-md-12">
 
                         <div class="box box-primary">
+                            <div class="alert alert-danger " role="alert" id="alertDiv"> 
+                                This is a warning alert—check it out!
+                            </div>
                             <div class="box-body">
+                                <div class="row form-inline" style="padding-bottom: 10px">
+                                    <div class=" col-md-3">PV value : <span > </span></div>
+                                    <div class=" col-md-1 " ><input id="currentPv" type="text" class="form-control-sm" style="border: hidden;margin-left: -50px;font-weight: bold" /> </div>
+                                    <input type="hidden" id="currentPv_1" />
+
+                                </div>
+
                                 <form class="form-inline" id="addform">
+
                                     {{csrf_field()}}
+
 
                                     <div class="form-group " >
                                         <label for="staticEmail2" style="width: 300px" class="sr-only">Email</label>
-                                        <select class="form-control-sm form-control" style="width: 300px" id="dummey_id" name="dummey_id">
+                                        <select class="form-control form-control-sm " style="width: 300px" id="dummey_id" name="dummey_id">
                                             <option  >Select dummry </option>
-                                            <option value="1" >876073829_A</option>
-                                            <option value="2" >876073829_B</option>
+                                            @foreach($dummeys as $dummey)
+                                            <option value="{{$dummey->id}}">{{$dummey->dummey_name}}</option>
+                                            @endforeach
 
                                         </select>
                                     </div>
-                                    <div class="form-group mx-sm-3 ">
+                                    <input type="hidden" id="product_id" name="product_id" />
+                                    <div class="form-group mx-sm-2 ">
                                         <label for="inputPassword2" class="sr-only">Password</label>
-                                        <input type="text" class="form-control " id="pv_value" name="pv_value" placeholder="pv value">
+                                        <input type="text" class="form-control " width="100px" id="pv_value" name="pv_value" placeholder="pv value">
                                     </div>
-                                    <button type="submit" class="btn btn-primary "  ><i class="fas fa-plus-circle"></i> Add </button>
+                                    <button   type="submit" class="btn btn-primary "  > Add </button>
                                 </form>
                                 <div id="controlid">
 
                                 </div>
+
+
 
                             </div>
                         </div>
@@ -196,7 +230,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+
+                <button type="button" class="btn btn-secondary btn-sm  mx-sm-6" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -205,80 +240,129 @@
 @endsection
 @section('script')
 <script >
-//    $('#read-data').on('click',function (){
-//       alert("sdsdsds"); 
-//    });
-
+    $('#alertDiv').hide()
+    function addPv(currentPv, product_id) {
+        document.getElementById('currentPv').value = currentPv;
+        document.getElementById('currentPv_1').value = currentPv;
+        document.getElementById('product_id').value = product_id;
+    }
     $(document).ready(function () {
         $('#addform').on('submit', function (e) {
-//    function abc() {
-//        $('#addform').on('submit', function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/dummey_pv", //this is your uri
-                type: 'POST', //this is your method
-                data: $('#addform').serialize(),
-                success: function (data) {
-                    console.log(data)
-                    alert("sdsd");
+
+            var current = parseFloat(document.getElementById('currentPv').value);
+            var input_val = parseFloat(document.getElementById('pv_value').value);
+              var product_id = parseFloat(document.getElementById('product_id').value);
+
+
+
+            if (current >= input_val) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/dummey_pv", //this is your uri
+                    type: 'POST', //this is your method
+                    data: $('#addform').serialize(),
+                    success: function (data) {
+                        // console.log(data)
+
 //          
-                }
-            });
-            loadData();
-        });   
-    });
-    function loadData(){
-        alert("asa");
-                    $.ajax({
-                url: "{{url('viewdummey_pv')}}", //this is your uri
-                type: 'get', //this is your method
-                success: function (data) {
-
-                    var table = '<div class="row">'
-                    table = '<div class="col-md-12">'
-                    table = ' <div class="box">'
-
-                    table = '<div class="box-body">';
-                    table = '<table class="table  table-dark " style="width:100%">';
-                    table += '<thead style="width:100%">'
-
-                    table += '<tr>'
-                    table += '<td>Dummey Id</td>'
-                    table += '<td>Pv value</td>'
-                    table += '<td>Action</td>'
-                    table += '</tr>'
-                    table += '</thead>'
-                    table += '<tbody>'
-                    for (var i in data) {
-
-                        dummey_id = data[i].dummey_id;
-                        pv_value = data[i].pv_value;
-                        table += '<tr>'
-                        table += '<td>'
-                        table += dummey_id;
-                        table += '</td>'
-                        table += '<td>'
-                        table += pv_value;
-                        table += '</td>'
-
-                        table += '<td>'
-                        table += '<button onclick="loadData();" type="button" class="btn btn-danger btn-sm "> <i class="fas fa-trash-alt"></i> Delete</button>';
-                        table += '</td>'
-
-                        table += '</tr>'
                     }
-                    table += '</tbody>'
-                    table += '</div>';
-                    table += '</div>';
-                    table += '</div>';
-                    table += '</div>';
+                });
+            } else {
+                e.preventDefault();
 
-                    $('#controlid').html(table);
+
+//                $('#alertDiv').html(table);
+                $('#alertDiv').fadeIn(700).delay(1500).fadeOut(200);
+                $('#alertDiv').html('Cannot complete the request');
+//                alert("cannot complete the request");
+            }
+            loadData(product_id);
+            document.getElementById('pv_value').value = '';
+        });
+
+
+    });
+
+
+    function loadData(product_id) {
+        console.log(product_id);
+        var total = 0;
+
+        $.ajax({
+            url: "viewdummey_pv/"+product_id, //this is your uri
+            type: 'get', //this is your method
+            success: function (data) {
+
+                var table = '<div class="row">'
+                table = '<div class="col-md-12">'
+                table = ' <div class="box">'
+
+                table = '<div class="box-body">';
+                table = '<table class="table  table-dark " style="width:100%;margin-top:10px">';
+                table += '<thead style="width:100%">'
+
+                table += '<tr>'
+                table += '<td>Dummey Id</td>'
+                table += '<td>Pv value</td>'
+                table += '<td>Action</td>'
+                table += '</tr>'
+                table += '</thead>'
+                table += '<tbody>'
+                for (var i in data) {
+
+                    id = data[i].id;
+                    dummey_id = data[i].dummey_id;
+                    pv_value = data[i].pv_value;
+                    table += '<tr hight="10">'
+                    table += '<td>'
+                    table += dummey_id;
+                    table += '</td>'
+                    table += '<td>'
+                    table += pv_value;
+                    table += '</td>'
+
+                    table += '<td>'
+                    table += '<button onclick="deleteData(' + id + ');" type="button" class="btn btn-danger btn-sm "> <i class="fas fa-trash-alt"></i> Delete</button>';
+                    table += '</td>'
+
+                    table += '</tr>'
+
+                    total += parseFloat(pv_value);
                 }
+                table += '</tbody>'
+                table += '</div>';
+                table += '</div>';
+                table += '</div>';
+                table += '</div>';
+
+                $('#controlid').html(table);
+
+                var current = document.getElementById('currentPv_1').value;
+//                alert("total : " + total + " current : " + current);
+                var minus_val = current - total;
+                document.getElementById('currentPv').value = minus_val;
+
+//                $('#alertDiv').fadeIn(700).delay(1500).fadeOut(200);
+//                $('#alertDiv').html('Cannot complete the request');
+            }
 
 
 
-            });
+        });
+    }
+    function  deleteData(id) {
+        $.ajax({
+            url: "dummey_pv_delete/" + id, //this is your uri
+
+            type: 'get', //this is your method
+            //data: $('#addform').serialize(),
+            success: function (data) {
+                // console.log(data)
+                loadData();
+//          
+            }
+        });
+        //  alert(id);
     }
 
 </script>

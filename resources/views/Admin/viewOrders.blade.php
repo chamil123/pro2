@@ -135,10 +135,13 @@
 <script type="text/javascript">
 
             function abc(id) {
+
             $.ajax({
             url: "{{url('orders')}}" + "/" + id, //this is your uri
                     type: 'get', //this is your method
                     success: function (data) {
+                        
+                       // console.log(data);
 
                     $('#exampleModal').modal("show");
                             var table = '<table class="table table-striped table-responsive">';
