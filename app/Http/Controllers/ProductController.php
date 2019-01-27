@@ -22,7 +22,7 @@ class ProductController extends Controller {
         $products = DB::table('products')
                 ->join('categories', 'products.cat_id', '=', 'categories.id')
                 ->select('products.*', 'categories.cat_name')
-                ->get();
+                ->paginate(5);
 
         return view('Admin.viewproduct', compact('products'));
     }
@@ -45,6 +45,16 @@ class ProductController extends Controller {
      */
     public function store(Request $request) {
         $product = new product;
+        
+        $this->validate($request, [
+           'product_name'=>'required',
+            'product_description'=>'required',
+            'product_price'=>'required|numeric',
+            'cat_id'=>'required|not_in:0',
+            'product_pv_value'=>'required|numeric',
+            'product_image'=>'required',
+        ]);
+        
         $product->product_name = $request->product_name;
         $product->product_description = $request->product_description;
         $product->product_price = $request->product_price;
@@ -62,7 +72,7 @@ class ProductController extends Controller {
 
             $product->product_image = $fileName;
             $product->save();
-            return redirect('product/create');
+            return redirect('product/create')->with('message','Successfully added record');
         } else {
             return 'no file selected';
         }
@@ -100,6 +110,15 @@ class ProductController extends Controller {
      */
     public function update(Request $request, $id) {
 
+         $this->validate($request, [
+           'product_name'=>'required',
+            'product_description'=>'required',
+            'product_price'=>'required|numeric',
+            'cat_id'=>'required|not_in:0',
+            'product_pv_value'=>'required|numeric',
+            'product_image'=>'required',
+        ]);
+         
         $product = product::find($id);
         $product->product_name = $request->product_name;
         $product->product_description = $request->product_description;

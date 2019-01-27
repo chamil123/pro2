@@ -45,6 +45,7 @@
                         </tbody>
 
                     </table>
+                      {{$members->links()}}
                 </div>
                 <!-- /.box-body -->
             </div>

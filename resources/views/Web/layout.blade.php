@@ -203,10 +203,7 @@
                                 <div class="settings-top">
                                     <div  style="font-size:1.7em;margin-top:7px;margin-left:3px">
                                         <a href="{{ route('login') }}"><i class="far fa-user"></i></a>
-
                                     </div>
-
-
                                 </div>
                                 <!--                            <li><a href="">Loginss</a></li>
                                                             <li><a href="{{ route('register') }}">Register</a></li>-->
@@ -221,38 +218,38 @@
 
                                     <div style="float: right">
                                         <div style="padding-left: 8px">Hi,   {{ Auth::user()->name }} <span class="caret"></span></div>
-                                         <div style="padding-left: 8px;margin-top: -9px"> <a href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                       document.getElementById('logout-form').submit();">
+                                        <div style="padding-left: 8px;margin-top: -9px"> <a href="{{ route('logout') }}"
+                                                                                            onclick="event.preventDefault();
+                                                                                                    document.getElementById('logout-form').submit();">
                                                 Logout
                                             </a>
-
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 {{ csrf_field() }}
-                                            </form></div>
+                                            </form>
+                                        </div>
                                     </div>
 
 
                                 </div>
-<!--                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        {{ Auth::user()->name }} <span class="caret"></span>
-                                    </a>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                       document.getElementById('logout-form').submit();">
-                                                Logout
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </li>-->
+                                <!--                                <li class="dropdown">
+                                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                                                    </a>
+                                
+                                                                    <ul class="dropdown-menu" role="menu">
+                                                                        <li>
+                                                                            <a href="{{ route('logout') }}"
+                                                                               onclick="event.preventDefault();
+                                                                                       document.getElementById('logout-form').submit();">
+                                                                                Logout
+                                                                            </a>
+                                
+                                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                                                {{ csrf_field() }}
+                                                                            </form>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>-->
                                 @endif
 
 
@@ -622,7 +619,8 @@
 <script src="{{ asset('bower_components/web/assets/js/ajax-mail.js')}}"></script>
 <!-- Active Js -->
 <script src="{{ asset('bower_components/web/assets/js/main.js')}}"></script>
- @yield('script')
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+@yield('script')
 </body>
 
 

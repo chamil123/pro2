@@ -1,6 +1,7 @@
 @extends('Admin.layout')
 @section('title','Member')
 @section('body')
+
 <section class="content-header">
     <h1>
         Member
@@ -54,6 +55,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                        {{$products->links()}}
                 </div>
             </div>
         </div>
@@ -124,6 +126,7 @@
 
 @endsection
 @section('script')
+
 <script type="text/javascript">
 //    $('#read-data').on('click',function (){
 //       alert("sdsdsds"); 
@@ -147,6 +150,13 @@
     });
     }
 </script>
+
+<script>
+$(document).ready( function () {
+    $('#example1').DataTable();
+} );
+</script>
+
 @endsection
 
 

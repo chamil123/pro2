@@ -44,7 +44,7 @@
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
         <style>
             body {
                 background: #fff;
@@ -334,7 +334,14 @@
                                             <a href="/member/1" class="btn btn-default btn-flat">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
+                                               onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                                Sign out
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
                                         </div>
                                     </li>
                                 </ul>
@@ -656,7 +663,7 @@
 
         <script>
 
-$.widget.bridge('uibutton', $.ui.button);
+                                                   $.widget.bridge('uibutton', $.ui.button);
 
 
         </script>
@@ -691,14 +698,14 @@ $.widget.bridge('uibutton', $.ui.button);
         <script src="{{ asset('bower_components/admin-lte/dist/js/pages/dashboard.js')}}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{ asset('bower_components/admin-lte/dist/js/demo.js')}}"></script>
-  @yield('script')
+        @yield('script')
 
         <script>
 
 //Date picker
-$('#datepicker').datepicker({
-    autoclose: true
-});
+                                                   $('#datepicker').datepicker({
+                                                       autoclose: true
+                                                   });
         </script>
 
     </body>

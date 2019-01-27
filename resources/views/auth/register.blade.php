@@ -80,13 +80,10 @@
                         <div class="form-group{{ $errors->has('nic_dummey') ? ' has-error' : '' }}">
                             <label for="exampleInputEmail1">Tracking Center</label>
                             <select class="form-control" id="sel1" name="nic_dummey"  required autofocus>
-                                <!--                                <option> {{ Auth::user()->user_nic }}_A</option>
-                                                                <option> {{ Auth::user()->user_nic }}_B</option>-->
-
                                 @foreach($dummeys as $dummey)
                                 <option value="{{$dummey->id}}">{{$dummey->dummey_name}}</option>
                                 @endforeach
-                               
+
                             </select>
                             @if ($errors->has('nic_dummey'))
                             <span class="help-block">
@@ -98,8 +95,26 @@
                         <div class="form-group{{ $errors->has('side') ? ' has-error' : '' }}">
                             <label for="exampleInputEmail1">Side</label>
                             <select class="form-control" id="sel1" name="side" value="{{ old('side') }}"  required autofocus>
+
+
+
+
+                                @foreach($sides as $side)
+                            
+                                @if($side->side=='Left')
+                                <option> Right</option>
+                                @elseif($side->side=='Right')
+                                <option> Left</option>
+                                @endif
+                                @endforeach
+                                @if($sides=='[]')
                                 <option>Left</option>
                                 <option>Right</option>
+                                @endif
+
+
+                                <!--                                <option>Left</option>
+                                                                <option>Right</option>-->
                             </select>
                             @if ($errors->has('side'))
                             <span class="help-block">
@@ -137,7 +152,7 @@
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password">Password</label>
-                            <input type="text" class="form-control" id="password" name="password" placeholder="Enter Address"  value="{{ old('password') }}" required autofocus>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Address"  value="{{ old('password') }}" required autofocus>
                             @if ($errors->has('password'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('password') }}</strong>
@@ -146,7 +161,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Confirm Password</label>
-                            <input type="text" class="form-control" id="password_confirmation" placeholder="Enter Address"  name="password_confirmation" required>
+                            <input type="password" class="form-control" id="password_confirmation" placeholder="Enter Address"  name="password_confirmation" required>
 
                         </div>
                     </div>
